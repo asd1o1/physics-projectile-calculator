@@ -19,16 +19,22 @@ void pageBreak(){
     }
 }
 
-double horizontalAirTime (double height){
+double horizontalAirTime(double height){
     //calculate time in air using formula t = sqrt(2h/g)
     double time = sqrt(2.0 * height/EARTH_G);
     return time;
 }
 
-double findDistance (double vel, double time){
+double findDistance(double vel, double time){
     //calculate distance travelled using formula d = vt
     double distance = vel * time;
     return distance;
+}
+
+double findMaxHeight(double yVel){
+    //calculate height reached using formula (vf^2 - vi^2)/2g
+    double height = (yVel * yVel)/(EARTH_G * 2.0);
+    return height;
 }
 
 double findXVel(double initialVel, double angleToGround){
@@ -47,7 +53,7 @@ double findYVel(double initialVel, double angleToGround){
 
 double angledAirTime(double yVel){
     //calculate time in the air using formula t = (vf - vi)/g (multiplied by two to account for the trip back down)
-    double time = yVel/EARTH_G * 2;
+    double time = yVel/EARTH_G * 2.0;
     return time;
 }
 
@@ -84,6 +90,10 @@ int main(){
         
         cout << "The projectile travelled a distance of ";
         cout << findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround)));
+        cout << " meters.\n";
+        
+        cout << "The projectile reached a maximum height of ";
+        cout << findMaxHeight(findYVel(initialVel, angleToGround));
         cout << " meters.\n";
     }
     else {
