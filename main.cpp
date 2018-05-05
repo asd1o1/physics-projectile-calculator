@@ -2,6 +2,7 @@
 #include <cmath>
 using namespace std;
 
+const double PI = 3.141592653589793;
 const double EARTH_G = 9.807;
 
 bool loop = true;
@@ -46,7 +47,7 @@ double findYVel(double initialVel, double angleToGround){
 
 double angledAirTime(double yVel){
     //calculate time in the air using formula t = (vf - vi)/g (multiplied by two to account for the trip back down)
-    double time = yVel/EARTH_G * 2
+    double time = yVel/EARTH_G * 2;
     return time;
 }
 
