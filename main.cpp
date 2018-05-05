@@ -1,12 +1,17 @@
 #include <iostream>
+#include <iomanip>
+#include <string>
 #include <cmath>
 using namespace std;
 
 const double PI = 3.141592653589793;
 const double EARTH_G = 9.807;
 
-bool loop = true;
 int choice;
+
+int sigFig1;
+int sigFig2;
+int sigFigs;
 
 double xVel;
 double height;
@@ -17,6 +22,12 @@ void pageBreak(){
     for (int x = 0; x < 200; x++){
         cout << "\n";
     }
+}
+
+int findSigFigs(int sigFig1, int sigFig2){
+    //NOTE: this only works because these calculations involve no adding/subtracting
+    if (sigFig1 > sigFig2) return sigFig2;
+    else return sigFig1;
 }
 
 double horizontalAirTime(double height){
@@ -67,34 +78,49 @@ int main(){
     if (choice == 1){
         cout << "Initial Horizontal Velocity (m/s): ";
         cin >> xVel;
+        cout << "Number of significant digits: ";
+        cin >> sigFig1;
         cout << "Initial Height (m): ";
         cin >> height;
-            
-        cout << "The projectile was in the air for ";
-        cout << horizontalAirTime(height);
+        cout << "Number of significant digits: ";
+        cin >> sigFig2;
+        
+        //calculate sig figs
+        sigFigs = findSigFigs(sigFig1, sigFig2);
+        
+        cout << "\nThe projectile was in the air for ";
+        cout << setprecision(sigFigs - 1) << scientific << horizontalAirTime(height);
         cout << " seconds.\n";
-            
+        
         cout << "The projectile travelled a distance of ";
-        cout << findDistance(xVel, horizontalAirTime(height));
+       cout << setprecision(sigFigs - 1) << scientific << findDistance(xVel, horizontalAirTime(height));
         cout << " meters.\n";
     }
     else if (choice == 2) {
         cout << "Initial Velocity (m/s): ";
         cin >> initialVel;
+        cout << "Number of significant digits: ";
+        cin >> sigFig1;
         cout << "Angle to Ground (degrees): ";
         cin >> angleToGround;
+        cout << "Number of significant digits: ";
+        cin >> sigFig2;
         
-        cout << "The projectile was in the air for ";
-        cout << angledAirTime(findYVel(initialVel, angleToGround));
+        //calculate sig figs
+        sigFigs = findSigFigs(sigFig1, sigFig2);
+        
+        cout << "\nThe projectile was in the air for ";
+        cout << setprecision(sigFigs - 1) << scientific << angledAirTime(findYVel(initialVel, angleToGround));
         cout << " seconds.\n";
         
         cout << "The projectile travelled a distance of ";
-        cout << findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround)));
+        cout << setprecision(sigFigs - 1) << scientific << findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround)));
         cout << " meters.\n";
         
         cout << "The projectile reached a maximum height of ";
-        cout << findMaxHeight(findYVel(initialVel, angleToGround));
+        cout << setprecision(sigFigs - 1) << scientific << findMaxHeight(findYVel(initialVel, angleToGround));
         cout << " meters.\n";
+        
     }
     else {
         cout << "Sorry, that's not an option.\n";
