@@ -21,6 +21,9 @@ string height_str;
 string initialVel_str;
 string angleToGround_str;
 
+int sigFig1;
+int sigFig2;
+
 double xVel;
 double height;
 double initialVel;
@@ -34,19 +37,10 @@ void pageBreak(){
     }
 }
 
-bool isDecimal(string num){
-    //check for a decimal point in string
-    if (num.find('.') != string::npos) return true;
-}
-
-int findSigFigs(string num1, string num2){
+int findSigFigs(int sigFig1, int sigFig2){
     //NOTE: this only works because these calculations involve no adding/subtracting
-    int length1 = num1.length();
-    int length2 = num2.length();
-    if (isDecimal(num1)) length1 -= 1;
-    if (isDecimal(num2)) length2 -= 1;
-    if (length1 > length2) return length2;
-    else return length1;
+    if (sigFig1 > sigFig2) return sigFig2;
+    else return sigFig1;
 }
 
 double horizontalAirTime(double height){
@@ -96,16 +90,16 @@ int main(){
     pageBreak();
     if (choice == 1){
         cout << "Initial Horizontal Velocity (m/s): ";
-        cin >> xVel_str;
+        cin >> xVel;
+        cout << "Number of significant digits: ";
+        cin >> sigFig1;
         cout << "Initial Height (m): ";
-        cin >> height_str;
+        cin >> height;
+        cout << "Number of significant digits: ";
+        cin >> sigFig2;
         
         //calculate sig figs
-        sigFigs = findSigFigs(xVel_str, height_str);
-        
-        //convert strings to doubles
-        xVel = stod(xVel_str);
-        height = stod(height_str);
+        sigFigs = findSigFigs(sigFig1, sigFig2);
         
         cout << "\nThe projectile was in the air for ";
         cout << setprecision(sigFigs - 1) << scientific << horizontalAirTime(height);
@@ -117,16 +111,16 @@ int main(){
     }
     else if (choice == 2) {
         cout << "Initial Velocity (m/s): ";
-        cin >> initialVel_str;
+        cin >> initialVel;
+        cout << "Number of significant digits: ";
+        cin >> sigFig1;
         cout << "Angle to Ground (degrees): ";
-        cin >> angleToGround_str;
+        cin >> angleToGround;
+        cout << "Number of significant digits: ";
+        cin >> sigFig2;
         
         //calculate sig figs
-        sigFigs = findSigFigs(initialVel_str, angleToGround_str);
-        
-        //convert strings to doubles
-        initialVel = stod(initialVel_str);
-        angleToGround = stod(angleToGround_str);
+        sigFigs = findSigFigs(sigFig1, sigFig2);
         
         cout << "\nThe projectile was in the air for ";
         cout << setprecision(sigFigs - 1) << scientific << angledAirTime(findYVel(initialVel, angleToGround));
