@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cmath>
 using namespace std;
@@ -46,26 +47,6 @@ int findSigFigs(string num1, string num2){
     if (isDecimal(num2)) length2 -= 1;
     if (length1 > length2) return length2;
     else return length1;
-}
-
-string roundToSigFigs(double num, int sigFigs){
-    //convert double to string to make it easier to work with
-    string str = to_string(num);
-    string newStr = "";
-    //counter to make for loop longer without affecting sigFigs
-    int notSigFigs = 0;
-    bool zeroesAreSignificant = false;
-    for (int i = 0; i <= (sigFigs + notSigFigs); i++){
-        //increase the counter (and essentially not count sig figs) for insignificant values
-        if ((str[i] == '0' && !zeroesAreSignificant) || str[i] == '.') notSigFigs += 1;
-        else {
-            //zeroes that aren't leading are made significant and counted as sig figs
-            zeroesAreSignificant = true;
-        }
-        //append character to new string
-        newStr += str[i];
-    }
-    return newStr;
 }
 
 double horizontalAirTime(double height){
@@ -126,8 +107,13 @@ int main(){
         xVel = stod(xVel_str);
         height = stod(height_str);
         
-        cout << "\nThe projectile was in the air for " + roundToSigFigs(horizontalAirTime(height), sigFigs) + " seconds.\n"; 
-        cout << "The projectile travelled a distance of " + roundToSigFigs(findDistance(xVel, horizontalAirTime(height)), sigFigs) + " meters.\n";
+        cout << "\nThe projectile was in the air for ";
+        cout << setprecision(sigFigs - 1) << scientific << horizontalAirTime(height);
+        cout << " seconds.\n";
+        
+        cout << "The projectile travelled a distance of ";
+       cout << setprecision(sigFigs - 1) << scientific << findDistance(xVel, horizontalAirTime(height));
+        cout << " meters.\n";
     }
     else if (choice == 2) {
         cout << "Initial Velocity (m/s): ";
@@ -142,12 +128,20 @@ int main(){
         initialVel = stod(initialVel_str);
         angleToGround = stod(angleToGround_str);
         
-        cout << "\nThe projectile was in the air for " + roundToSigFigs(angledAirTime(findYVel(initialVel, angleToGround)), sigFigs) + " seconds.\n";
-        cout << "The projectile travelled a distance of " + roundToSigFigs(findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround))), sigFigs) + " meters.\n";
-        cout << "The projectile reached a maximum height of " + roundToSigFigs(findMaxHeight(findYVel(initialVel, angleToGround)), sigFigs) + " meters.\n";
+        cout << "\nThe projectile was in the air for ";
+        cout << setprecision(sigFigs - 1) << scientific << angledAirTime(findYVel(initialVel, angleToGround));
+        cout << " seconds.\n";
+        
+        cout << "The projectile travelled a distance of ";
+        cout << setprecision(sigFigs - 1) << scientific << findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround)));
+        cout << " meters.\n";
+        
+        cout << "The projectile reached a maximum height of ";
+        cout << setprecision(sigFigs - 1) << scientific << findMaxHeight(findYVel(initialVel, angleToGround));
+        cout << " meters.\n";
+        
     }
     else {
         cout << "Sorry, that's not an option.\n";
     }
-    cout << "\nNOTE: All digits are significant except the last one!\n";
 }
