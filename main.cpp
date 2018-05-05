@@ -25,9 +25,9 @@ double horizontalAirTime (double height){
     return time;
 }
 
-double horizontalDistance (double xVel, double time){
+double findDistance (double vel, double time){
     //calculate distance travelled using formula d = vt
-    double distance = xVel * time;
+    double distance = vel * time;
     return distance;
 }
 
@@ -69,7 +69,7 @@ int main(){
         cout << " seconds.\n";
             
         cout << "The projectile travelled a distance of ";
-        cout << horizontalDistance(xVel, horizontalAirTime(height));
+        cout << findDistance(xVel, horizontalAirTime(height));
         cout << " meters.\n";
     }
     else if (choice == 2) {
@@ -81,6 +81,10 @@ int main(){
         cout << "The projectile was in the air for ";
         cout << angledAirTime(findYVel(initialVel, angleToGround));
         cout << " seconds.\n";
+        
+        cout << "The projectile travelled a distance of ";
+        cout << findDistance(findXVel(initialVel, angleToGround), angledAirTime(findYVel(initialVel, angleToGround)));
+        cout << " meters.\n";
     }
     else {
         cout << "Sorry, that's not an option.\n";
