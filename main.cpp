@@ -29,40 +29,30 @@ double horizontalDistance (double xVel, double time){
 }
 
 int main(){
-    while (loop){
-        pageBreak();
-        cout << "How is your projectile being launched?\n";
-        cout << "(1) Horizontally\n";
-        cout << "(2) At an angle\n";
-        cin >> choice;
-        pageBreak();
-        if (choice == 1){
-            cout << "Initial Horizontal Velocity (m/s): ";
-            cin >> xVel;
-            cout << "Initial Height (m): ";
-            cin >> height;
+    pageBreak();
+    cout << "How is your projectile being launched?\n";
+    cout << "(1) Horizontally\n";
+    cout << "(2) At an angle\n";
+    cin >> choice;
+    pageBreak();
+    if (choice == 1){
+        cout << "Initial Horizontal Velocity (m/s): ";
+        cin >> xVel;
+        cout << "Initial Height (m): ";
+        cin >> height;
             
-            cout << "The projectile was in the air for ";
-            cout << horizontalAirTime(height);
-            cout << " seconds.\n";
+        cout << "The projectile was in the air for ";
+        cout << horizontalAirTime(height);
+        cout << " seconds.\n";
             
-            cout << "The projectile travelled a distance of ";
-            cout << horizontalDistance(xVel, horizontalAirTime(height));
-            cout << " meters.\n";
-        }
-        else if (choice == 2) {
-        //do angle
-        }
-        else {
-            cout << "Sorry, that's not an option.\n";
-        }
-        //keep running program?
-        cout << "\n\nRun again?\n";
-        cout << "(1) Yes\n";
-        cout << "(2) No\n";
-        cin >> choice;
-        if (choice != 1){
-            loop = false;
-        }
+        cout << "The projectile travelled a distance of ";
+        cout << horizontalDistance(xVel, horizontalAirTime(height));
+        cout << " meters.\n";
+    }
+    else if (choice == 2) {
+    //do angle
+    }
+    else {
+        cout << "Sorry, that's not an option.\n";
     }
 }
