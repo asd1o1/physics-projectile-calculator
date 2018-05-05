@@ -7,29 +7,16 @@ using namespace std;
 const double PI = 3.141592653589793;
 const double EARTH_G = 9.807;
 
-bool loop = true;
 int choice;
-
- /*
- To make it possible to count sig figs in initial values,
- they need to be strings (if they are doubles, then the value will always be 9).
- There don't seem to be any issues converting them
- to doubles when it's needed.
- */
-string xVel_str;
-string height_str;
-string initialVel_str;
-string angleToGround_str;
 
 int sigFig1;
 int sigFig2;
+int sigFigs;
 
 double xVel;
 double height;
 double initialVel;
 double angleToGround;
-
-int sigFigs;
 
 void pageBreak(){
     for (int x = 0; x < 200; x++){
