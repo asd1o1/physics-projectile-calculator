@@ -4,7 +4,7 @@
 #include <cmath>
 using namespace std;
 
-const long double PI = 3.141592653589793238462643383279502884;
+const double PI = 3.141592653589793;
 const double EARTH_G = 9.807;
 
 void pageBreak(){
