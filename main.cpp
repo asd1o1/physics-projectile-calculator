@@ -87,7 +87,7 @@ int main(){
         //calculate sig figs    //TODO: better comments
         int sigFigs = findSigFigs(sigFig1, sigFig2);
         
-        cout << setprecision(sigFigs - 1) << scientific;    //nicely elides the problem of dealing with sigfigs
+        cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
 
         cout << "\nThe projectile was in the air for ";
         cout << horizontalAirTime(height);
@@ -112,7 +112,7 @@ int main(){
         //calculate sig figs
         int sigFigs = findSigFigs(sigFig1, sigFig2);
 
-        cout << setprecision(sigFigs - 1) << scientific;    //nicely elides the problem of dealing with sigfigs
+        cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
         
         cout << "\nThe projectile was in the air for ";
         cout << angledAirTime(findYVel(initialVel, angleToGround));
