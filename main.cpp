@@ -53,8 +53,6 @@ double angledAirTime(double yVel){
 }
 
 int main(){
-    
-    //bringing variables from global scope to main() scope
     int choice = 0;
 
     int sigFig1 = 0;
