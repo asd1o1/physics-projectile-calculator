@@ -82,7 +82,7 @@ int main(){
         cout << "Number of significant digits: ";
         cin >> sigFig2;
         
-        //calculate sig figs    //TODO: better comments
+        //calculate sig figs
         int sigFigs = findSigFigs(sigFig1, sigFig2);
         
         cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
