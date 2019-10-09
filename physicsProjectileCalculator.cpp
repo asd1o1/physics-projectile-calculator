@@ -5,7 +5,8 @@
 using namespace std;
 
 const double PI = 3.141592653589793;
-const double EARTH_G = 9.807;
+const double EARTH_G = 9.80665;
+const int EARTH_G_SIGFIGS = 6;
 
 void pageBreak(){
     for (int x = 0; x < 200; x++){
@@ -15,8 +16,9 @@ void pageBreak(){
 
 int findSigFigs(int sigFig1, int sigFig2){
     //NOTE: this only works because these calculations involve no adding/subtracting
-    if (sigFig1 > sigFig2) return sigFig2;
-    else return sigFig1;
+    if (sigFig1 > sigFig2 && EARTH_G_SIGFIGS > sigFig2) return sigFig2;
+    else if (sigFig2 > sigFig1 && EARTH_G_SIGFIGS > sigFig1) return sigFig1;
+    else return EARTH_G_SIGFIGS;
 }
 
 double horizontalAirTime(double height){
