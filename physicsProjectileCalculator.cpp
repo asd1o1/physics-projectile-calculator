@@ -14,10 +14,10 @@ void pageBreak(){
     }
 }
 
-int findSigFigs(int sigFig1, int sigFig2){
+int findSigFigs(int sigFigA, int sigFigB){
     //NOTE: this only works because these calculations involve no adding/subtracting
-    if (sigFig1 > sigFig2 && EARTH_G_SIGFIGS > sigFig2) return sigFig2;
-    else if (sigFig2 > sigFig1 && EARTH_G_SIGFIGS > sigFig1) return sigFig1;
+    if (sigFigA > sigFigB && EARTH_G_SIGFIGS > sigFigB) return sigFigB;
+    else if (sigFigB > sigFigA && EARTH_G_SIGFIGS > sigFigA) return sigFigA;
     else return EARTH_G_SIGFIGS;
 }
 
@@ -57,8 +57,8 @@ double angledAirTime(double yVel){
 int main(){
     int choice = 0;
 
-    int sigFig1 = 0;
-    int sigFig2 = 0;
+    int sigFigA = 0;
+    int sigFigB = 0;
 
     double xVel = 0.0;
     double height = 0.0;
@@ -78,14 +78,14 @@ int main(){
         cout << "Initial Horizontal Velocity (m/s): ";
         cin >> xVel;
         cout << "Number of significant digits: ";
-        cin >> sigFig1;
+        cin >> sigFigA;
         cout << "Initial Height (m): ";
         cin >> height;
         cout << "Number of significant digits: ";
-        cin >> sigFig2;
+        cin >> sigFigB;
         
         //calculate sig figs
-        int sigFigs = findSigFigs(sigFig1, sigFig2);
+        int sigFigs = findSigFigs(sigFigA, sigFigB);
         
         cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
 
@@ -103,14 +103,14 @@ int main(){
         cout << "Initial Velocity (m/s): ";
         cin >> initialVel;
         cout << "Number of significant digits: ";
-        cin >> sigFig1;
+        cin >> sigFigA;
         cout << "Angle to Ground (degrees): ";
         cin >> angleToGround;
         cout << "Number of significant digits: ";
-        cin >> sigFig2;
+        cin >> sigFigB;
         
         //calculate sig figs
-        int sigFigs = findSigFigs(sigFig1, sigFig2);
+        int sigFigs = findSigFigs(sigFigA, sigFigB);
 
         cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
         
