@@ -16,8 +16,13 @@ void pageBreak(){
 
 int findSigFigs(int sigFigA, int sigFigB){
     //NOTE: this only works because these calculations involve no adding/subtracting
+    //sigFigB is smallest
     if (sigFigA > sigFigB && EARTH_G_SIGFIGS > sigFigB) return sigFigB;
+    //sigFigA is smallest
     else if (sigFigB > sigFigA && EARTH_G_SIGFIGS > sigFigA) return sigFigA;
+    //sigFigA and B are equal and smallest
+    else if (sigFigA == sigFigB && EARTH_G_SIGFIGS > sigFigA) return sigFigA;
+    //gravity has least amount of sig figs
     else return EARTH_G_SIGFIGS;
 }
 
