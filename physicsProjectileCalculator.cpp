@@ -69,11 +69,14 @@ double angledAirTime(double yVel){
 }
 
 int main(){
+    //used to make choices
     int choice = 0;
 
+    //sig fig counts for the values used in calculations
     int sigFigA = 0;
     int sigFigB = 0;
 
+    //all input values, with a string variant and double variant
     string xVelInput = "";
     double xVel = 0.0;
     string heightInput = "";
@@ -107,8 +110,8 @@ int main(){
         
         //calculate sig figs
         int sigFigs = findSigFigs(sigFigA, sigFigB);
-        
-        cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
+        //set output stream to correct amount of sig figs
+        cout << setprecision(sigFigs - 1) << scientific;
 
         cout << "\nThe projectile was in the air for ";
         cout << horizontalAirTime(height);
@@ -130,10 +133,9 @@ int main(){
         angleToGround = stod(angleToGroundInput);
         sigFigB = parseInputForSigFigs(angleToGroundInput);
         
-        //calculate sig figs
         int sigFigs = findSigFigs(sigFigA, sigFigB);
 
-        cout << setprecision(sigFigs - 1) << scientific;    //expurgates the problem of dealing with sigfigs
+        cout << setprecision(sigFigs - 1) << scientific;
         
         cout << "\nThe projectile was in the air for ";
         cout << angledAirTime(findYVel(initialVel, angleToGround));
