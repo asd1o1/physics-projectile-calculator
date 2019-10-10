@@ -74,9 +74,13 @@ int main(){
     int sigFigA = 0;
     int sigFigB = 0;
 
+    string xVelInput = "";
     double xVel = 0.0;
+    string heightInput = "";
     double height = 0.0;
+    string initialVelInput = "";
     double initialVel = 0.0;
+    string angleToGroundInput = "";
     double angleToGround = 0.0;
 
     pageBreak();
@@ -90,13 +94,16 @@ int main(){
     case 1:
     {
         cout << "Initial Horizontal Velocity (m/s): ";
-        cin >> xVel;
-        cout << "Number of significant digits: ";
-        cin >> sigFigA;
+        //take input as string for sig fig calclation
+        cin >> xVelInput;
+        //convert to double for math
+        xVel = stod(xVelInput);
+        //get sig figs from string input
+        sigFigA = parseInputForSigFigs(xVelInput);
         cout << "Initial Height (m): ";
-        cin >> height;
-        cout << "Number of significant digits: ";
-        cin >> sigFigB;
+        cin >> heightInput;
+        height = stod(heightInput);
+        sigFigB = parseInputForSigFigs(heightInput);
         
         //calculate sig figs
         int sigFigs = findSigFigs(sigFigA, sigFigB);
@@ -115,13 +122,13 @@ int main(){
 
     case 2:{
         cout << "Initial Velocity (m/s): ";
-        cin >> initialVel;
-        cout << "Number of significant digits: ";
-        cin >> sigFigA;
+        cin >> initialVelInput;
+        initialVel = stod(initialVelInput);
+        sigFigA = parseInputForSigFigs(initialVelInput);
         cout << "Angle to Ground (degrees): ";
-        cin >> angleToGround;
-        cout << "Number of significant digits: ";
-        cin >> sigFigB;
+        cin >> angleToGroundInput;
+        angleToGround = stod(angleToGroundInput);
+        sigFigB = parseInputForSigFigs(angleToGroundInput);
         
         //calculate sig figs
         int sigFigs = findSigFigs(sigFigA, sigFigB);
