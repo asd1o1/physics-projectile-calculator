@@ -21,6 +21,20 @@ int findSigFigs(int sigFigA, int sigFigB){
     else return EARTH_G_SIGFIGS;
 }
 
+//parse through input and return sig figs
+int parseInputForSigFigs(string input){
+    int sigFigCounter = input.length();
+    bool hasDecimal = false;
+    for (int i = 0; i < input.length(); i++){
+        //decimal encountered
+        if (input[i] == '.') hasDecimal = true;
+        //digit is zero and no decimal has been encountered yet
+        else if (input[i] == '0' && hasDecimal == false) sigFigCounter--;
+    };
+    if (hasDecimal) sigFigCounter--;
+    return sigFigCounter;
+}
+
 double horizontalAirTime(double height){
     //calculate time in air using formula t = sqrt(2h/g)
     return sqrt(2.0 * height/EARTH_G);
