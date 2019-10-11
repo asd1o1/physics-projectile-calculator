@@ -32,9 +32,13 @@ int parseInputForSigFigs(string input){
     bool hasDecimal = false;
     for (int i = 0; i < input.length(); i++){
         //decimal encountered
-        if (input[i] == '.') hasDecimal = true;
+        if (!hasDecimal && input[i] == '.') hasDecimal = true;
         //digit is zero and no decimal has been encountered yet
         else if (input[i] == '0' && hasDecimal == false) sigFigCounter--;
+        else if (hasDecimal && input[i] == '.'){
+            sigFigCounter = i - 1;
+            return sigFigCounter;
+        };
     };
     if (hasDecimal) sigFigCounter--;
     return sigFigCounter;
