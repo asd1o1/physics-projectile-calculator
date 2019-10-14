@@ -162,7 +162,6 @@ int main(){
     }
     default: {
         cout << "Sorry, that's not an option. Please rerun with correct inputs.\n";
-        //main();
     }
     }
 return 0;
